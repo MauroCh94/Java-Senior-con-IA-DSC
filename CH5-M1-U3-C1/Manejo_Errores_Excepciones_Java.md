@@ -331,6 +331,26 @@ public class ValidacionException extends Exception {
 1. **Capturar Exception genérica sin necesidad**
 2. **Ignorar excepciones silenciosamente**
 3. **Usar excepciones para control de flujo normal**
+
+```java
+❌ Evitar
+try {
+    if (edad < 18) {
+        throw new RuntimeException();
+    }
+    procesar();
+} catch (RuntimeException e) {
+    System.out.println("Menor de edad");
+}
+
+✅ Forma correcta
+if (edad < 18) {
+    System.out.println("Menor de edad");
+} else {
+    procesar();
+}
+```
+
 4. **Exponer detalles internos al usuario final**
 5. **No cerrar recursos adecuadamente**
 
