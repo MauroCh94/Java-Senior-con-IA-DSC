@@ -1,9 +1,9 @@
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class ValidacionException extends RuntimeException {
-    private String campo;
+public class ValidacionException extends Exception {
     private LocalDateTime fecha;
+    private String campo;
 
     public ValidacionException(String campo, LocalDateTime fecha, String mensaje) {
         super(mensaje);
