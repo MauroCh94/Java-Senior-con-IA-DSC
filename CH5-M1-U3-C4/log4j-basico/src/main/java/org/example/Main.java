@@ -1,8 +1,11 @@
 package org.example;
 
+import org.example.autenticacion.ServicioAutenticacion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
+
+import java.util.UUID;
 
 /**
  * Clase principal que demuestra los conceptos básicos de Log4j2
@@ -19,18 +22,20 @@ public class Main {
     
     public static void main(String[] args) {
         System.out.println("=== Proyecto Básico de Log4j2 ===\n");
-        
-        // Ejemplo 1: Niveles de log básicos
-        demostrarNivelesLog();
-        
+//
+//        // Ejemplo 1: Niveles de log básicos
+//        demostrarNivelesLog();
+//
         // Ejemplo 2: MDC (Mapped Diagnostic Context)
-        demostrarMDC();
-        
+//        demostrarMDC();
+//
         // Ejemplo 3: Markers para categorización
         demostrarMarkers();
-        
+
+        log.info("prueba {} con {} parametros {}", 1 , 2 , 3);
+
         // Ejemplo 4: Caso de uso real - Autenticación
-        demostrarAutenticacion();
+//        demostrarAutenticacion();
         
         System.out.println("\n=== Fin de la demostración ===");
         System.out.println("Revisa los logs en la carpeta 'logs/'");
@@ -43,7 +48,7 @@ public class Main {
         System.out.println("\n--- Ejemplo 1: Niveles de Log ---");
         
         // TRACE: Información muy detallada (solo para desarrollo profundo)
-        log.trace("Este es un mensaje TRACE - muy detallado");
+        log.info("Este es un mensaje TRACE - muy detallado");
         
         // DEBUG: Información útil para depurar
         log.debug("Este es un mensaje DEBUG - información técnica");
@@ -66,8 +71,10 @@ public class Main {
         
         // Simulamos un request con ID único
         String requestId = "REQ-" + System.currentTimeMillis();
-        MDC.put("requestId", requestId);
-        MDC.put("userId", "USR-12345");
+
+        MDC.put("requestId", "JUAN");
+
+        MDC.put("USER", "USR-12345");
         
         log.info("Request iniciado");
         log.debug("Procesando datos del usuario");
