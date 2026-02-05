@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class TestPrincipal {
+class CalculadoraTest {
 
     static Calculadora calc;
     static Double num1, num2;
@@ -39,17 +39,22 @@ class TestPrincipal {
     @Test
     void sumar() {
 
+
         Double result = calc.sumar(num1, num2);
 
-        assertNotNull(result);
+        assertNotNull(result, "El resultado no es null");
         System.out.println("Paso not null");
-        assertEquals(8.0, result);
+        assertEquals(8.0, result, "El resultado es: " + result);
         System.out.println("Paso equals");
     }
 
     @Test
     void dividir() {
+
+
+
+
         Double result = calc.dividir(num1, num2);
-        assertEquals(num1 / num2, result);
+        assertEquals(num1 / num2, result , "El resultado es: " + result);
     }
 }
