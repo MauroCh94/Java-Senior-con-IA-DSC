@@ -80,42 +80,6 @@ biblioteca-gestion/
 - Maven 3.6 o superior
 - IDE (IntelliJ IDEA, Eclipse, VS Code, etc.)
 
-### Pasos de Instalación
-
-1. **Clonar o descargar el proyecto**
-
-2. **Compilar el proyecto:**
-   ```bash
-   mvn clean compile
-   ```
-
-3. **Ejecutar todas las pruebas:**
-   ```bash
-   mvn test
-   ```
-
-4. **Ver el reporte de pruebas:**
-   ```bash
-   mvn surefire-report:report
-   ```
-
-### Ejecutar desde el IDE
-
-- **IntelliJ IDEA**: Click derecho en el proyecto → "Run All Tests"
-- **Eclipse**: Click derecho en el proyecto → "Run As" → "JUnit Test"
-- **VS Code**: Abrir la vista de Testing y ejecutar las pruebas
-
-## 📊 Cobertura de Pruebas
-
-El proyecto incluye pruebas unitarias para:
-
-- ✅ **ValidacionService**: 20+ casos de prueba
-- ✅ **LibroService**: 25+ casos de prueba
-- ✅ **PrestamoService**: 20+ casos de prueba
-- ✅ **Modelo Libro**: 10+ casos de prueba
-
-**Total: 75+ pruebas unitarias**
-
 ## 📖 Reglas de Negocio Implementadas
 
 ### Reglas de Libros
@@ -209,15 +173,6 @@ public void testEjemplo() {
 }
 ```
 
-### Cobertura de Casos
-
-Cada método tiene pruebas para:
-- ✅ **Casos exitosos** (happy path)
-- ✅ **Casos de error** (excepciones)
-- ✅ **Casos límite** (valores extremos)
-- ✅ **Casos null/vacío**
-- ✅ **Casos inválidos**
-
 ## 📝 Convenciones de Código
 
 ### Nombres de Pruebas
@@ -237,47 +192,8 @@ Ejemplos:
 - Pruebas agrupadas por método con comentarios
 - Uso de `@BeforeEach` para inicialización común
 
-## 🔍 Análisis de Código
-
-### Métricas del Proyecto
-
-- **Clases de producción**: 7
-- **Clases de prueba**: 4
-- **Líneas de código**: ~1500
-- **Líneas de pruebas**: ~1200
-- **Ratio pruebas/código**: ~0.8:1
-
-### Calidad del Código
-
-- ✅ Código limpio y legible
-- ✅ Nombres descriptivos
-- ✅ Separación de responsabilidades
-- ✅ Manejo adecuado de excepciones
-- ✅ Documentación en métodos clave
-
-## 🎯 Próximos Pasos (Mejoras Futuras)
-
-1. **Persistencia**: Agregar capa de repositorio con base de datos
-2. **API REST**: Crear endpoints para exponer funcionalidades
-3. **Pruebas de integración**: Probar flujos completos
-4. **Logging**: Agregar logs con Log4j2
-5. **Validaciones avanzadas**: Fechas de vencimiento, multas, etc.
-
 ## 📚 Recursos de Aprendizaje
 
 - [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 - [Maven Getting Started](https://maven.apache.org/guides/getting-started/)
 - [Test-Driven Development](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
-
-## 👥 Autor
-
-Proyecto educativo para demostración de pruebas unitarias con JUnit 5.
-
-## 📄 Licencia
-
-Este proyecto es de uso educativo.
-
----
-
-**¡Disfruta aprendiendo sobre pruebas unitarias!** 🧪✨
-
