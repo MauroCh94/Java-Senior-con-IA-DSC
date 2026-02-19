@@ -4,58 +4,40 @@ En este taller se propone **un ejemplo muy sencillo** por cada tipo de colecció
 
 ---
 
-## Requisitos previos
-
-- Tener abierto un proyecto Java (por ejemplo el de **agenda-contactos** o uno nuevo).
-- Importar: `java.util.List`, `ArrayList`, `LinkedList`, `Set`, `HashSet`, `TreeSet`, `Map`, `HashMap`, `TreeMap`.
-
 ---
 
-## 1. ArrayList — lista ordenada con duplicados
+## 1.
 
 **Enunciado:** Guardar los nombres de tres frutas en el orden en que se escriben y permitir repetición. Mostrar la primera fruta y la cantidad total.
 
 ---
 
-## 2. LinkedList — lista con inserción al inicio
+## 2.
 
 **Enunciado:** Representar una fila de tres personas. Luego llega alguien con prioridad y debe ir primero. Mostrar el orden final.
 
 ---
 
-## 3. HashSet — conjunto sin duplicados (orden no importa)
+## 3.
 
 **Enunciado:** Guardar códigos de producto. No debe haber códigos repetidos. Añadir "P001", "P002", "P001" de nuevo y "P003". Mostrar cuántos hay y si existe "P002".
 
 ---
 
-## 4. TreeSet — conjunto sin duplicados y ordenado
+## 4.
 
 **Enunciado:** Guardar nombres de ciudades sin repetir y mostrarlos ordenados alfabéticamente. Añadir "Madrid", "Barcelona", "Alicante", "Barcelona".
 
 ---
 
-## 5. HashMap — pares clave-valor (buscar por clave)
+## 5.
 
 **Enunciado:** Una agenda muy simple: asociar nombre con teléfono. Añadir (Ana, 600111222), (Luis, 600333444), (Ana, 600999888) — Ana se actualiza. Buscar el teléfono de "Luis" y mostrar todas las entradas.
 
 ---
 
-## 6. TreeMap — pares clave-valor con claves ordenadas
+## 6.
 
 **Enunciado:** Igual que el anterior, pero el listado debe salir ordenado por nombre (clave). Añadir (Zaragoza, Z), (Madrid, M), (Barcelona, B). Mostrar el mapa completo.
 
 ---
-
-## Resumen del taller
-
-| Ejercicio | Estructura   |
-|-----------|--------------|
-| 1         | ArrayList    |
-| 2         | LinkedList   |
-| 3         | HashSet      |
-| 4         | TreeSet      |
-| 5         | HashMap      |
-| 6         | TreeMap      |
-
-Las soluciones detalladas están en el archivo **TALLER_Estructuras_Datos_Soluciones.md**.

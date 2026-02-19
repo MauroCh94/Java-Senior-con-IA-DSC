@@ -65,10 +65,10 @@ Crear una **agenda de contactos** en la que cada contacto tiene:
 
 Operaciones:
 
-- **Alta:** añadir contacto (nombre, teléfono, email).
+- **Añadir:** añadir contacto (nombre, teléfono, email).
 - **Consulta:** buscar por nombre y mostrar teléfono y email.
 - **Actualización:** cambiar teléfono o email de un contacto existente.
-- **Baja:** eliminar un contacto por nombre.
+- **Eliminar:** eliminar un contacto por nombre.
 - **Listado:** mostrar todos los contactos.
 
 ### 2.2 Elección de estructura
@@ -151,29 +151,25 @@ Al usar listas, sets y mapas aparecen errores de lógica típicos. A continuaci�
 
 ---
 
-## 4. Refactorización del ejercicio práctico: buenas prácticas de estructura
-
-Después de tener la agenda funcionando, conviene refactorizar para que el código sea más claro y mantenible.
-
-### 4.1 Separación de responsabilidades
+### 4 Separación de responsabilidades
 
 - **Modelo:** clase `Contacto` solo con datos (getters/setters o registro).
-- **Lógica de negocio:** clase `AgendaService` (o similar) que contiene el `HashMap` y los métodos alta, consulta, actualización, baja, listado.
+- **Lógica de negocio:** clase `AgendaService` (o similar) que contiene el `HashMap` y los métodos añadir, consulta, actualización, eliminar, listado.
 - **Entrada/salida:** clase `Main` o `AgendaApp` que muestra menú, lee teclado y llama al servicio. No poner la lógica del Map dentro del main.
 
 Así puedes probar el servicio sin consola y cambiar la interfaz (consola, ventanas) sin tocar la lógica.
 
-### 4.2 Validaciones en un solo lugar
+### 4.1 Validaciones en un solo lugar
 
 - Validar nombre no vacío, teléfono con formato razonable, etc., antes de llamar a `put` o de crear el `Contacto`.
 - Si la validación falla, no modificar el mapa; informar al usuario o lanzar excepción.
 
-### 4.3 Nombres claros
+### 4.2 Nombres claros
 
 - Variable del mapa: `agenda`, `contactosPorNombre`, no solo `mapa` o `m`.
 - Métodos: `agregarContacto`, `buscarPorNombre`, `actualizarTelefono`, `eliminarContacto`, `listarContactos`.
 
-### 4.4 Uso de la interfaz Map
+### 4.3 Uso de la interfaz Map
 
 Declarar con la interfaz para poder cambiar la implementación después:
 
@@ -191,16 +187,7 @@ Al revisar o refactorizar tu código de agenda, comprueba lo siguiente:
 
 ---
 
-## 5. Actividades propuestas para la tutoría
-
-1. **Comparar estructuras:** Con 2–3 casos (ej. “lista de pedidos”, “códigos de producto únicos”, “buscar alumno por DNI”) decidir en grupo si usar List, Set o Map y justificar con los criterios de la sección 1.
-2. **Taller agenda:** Completar o modificar el proyecto `agenda-contactos`: añadir validación de teléfono, no permitir nombre vacío, manejar “contacto no encontrado” sin que el programa falle (usando las comprobaciones de la sección 3).
-3. **Identificación de errores:** En la clase `ErroresComunesAgenda` del proyecto, localizar cada error comentado y aplicar la corrección correspondiente según lo explicado en la sección 3. Explicar en grupo por qué cada cambio evita el fallo.
-4. **Refactorización:** Partir del código del taller y aplicar las buenas prácticas de la sección 4: separar modelo, servicio y consola; revisar nombres de métodos; asegurar validaciones y comprobaciones de null en un solo lugar. Después, explicar qué se ganó en claridad y mantenimiento.
-
----
-
-## 6. Resumen
+## 5. Resumen
 
 - **List** para secuencias con orden/posición y posibles repeticiones.
 - **Set** para conjuntos sin duplicados.
