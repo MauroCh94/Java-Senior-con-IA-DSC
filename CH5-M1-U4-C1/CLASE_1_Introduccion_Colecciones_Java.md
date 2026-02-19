@@ -111,7 +111,68 @@ Así puedes cambiar la implementación más adelante sin tocar el resto del cód
 | **HashSet** | No garantizado | Conjunto sin duplicados y no te importa el orden. Muy usado. |
 | **TreeSet** | Ordenado (natural o comparador) | Conjunto sin duplicados que debe estar ordenado. |
 
-**Requisito para TreeSet (y TreeMap):** Los elementos deben ser *comparables* (implementar `Comparable`) o debes pasar un `Comparator`.
+#### Requisito para TreeSet y TreeMap: comparación de elementos (Comparable o Comparator)
+
+**TreeSet** y **TreeMap** ordenan sus elementos (o las claves, en el Map) internamente. Para saber “quién va antes y quién después”, Java necesita una forma de **comparar** dos elementos. Hay dos formas de proporcionarla:
+
+**1. Orden natural: la clase implementa `Comparable<T>`**
+
+La interfaz `Comparable<T>` tiene un único método: `int compareTo(T otro)`. Devuelve un número negativo si “this” va antes que `otro`, cero si son iguales para el orden, o positivo si va después. Así el TreeSet/TreeMap puede ordenar sin saber nada más.
+
+Muchas clases de Java ya implementan `Comparable`: `String` (orden alfabético), `Integer`, `LocalDate`, etc. Con esas puedes usar `TreeSet` o `TreeMap` directamente:
+
+```java
+// String ya implementa Comparable → orden alfabético
+Set<String> nombres = new TreeSet<>();
+nombres.add("Carlos");
+nombres.add("Ana");
+nombres.add("Bruno");
+System.out.println(nombres);  // [Ana, Bruno, Carlos]
+```
+
+Si usas **tu propia clase** (por ejemplo `Producto`, `Alumno`), tienes dos opciones:
+
+- **Opción A:** Hacer que la clase implemente `Comparable<Producto>` y definir `compareTo` (por nombre, por id, etc.). Entonces `new TreeSet<Producto>()` usará ese orden.
+- **Opción B:** No tocar la clase y pasar al TreeSet/TreeMap un **Comparator** que compare dos elementos.
+
+**2. Orden personalizado: usar un `Comparator<T>`**
+
+Un `Comparator<T>` es un objeto que sabe comparar dos elementos de tipo `T`. Tiene el método `int compare(T a, T b)`. Puedes usarlo cuando:
+- La clase no implementa `Comparable`, o
+- Quieres un orden distinto al natural (por ejemplo, orden inverso, o ordenar por otro campo).
+
+Se pasa en el constructor del TreeSet o TreeMap:
+
+```java
+// Orden alfabético inverso
+Set<String> nombres = new TreeSet<>(Comparator.reverseOrder());
+
+// TreeSet de enteros ordenados de mayor a menor
+Set<Integer> numeros = new TreeSet<>(Comparator.reverseOrder());
+numeros.add(5);
+numeros.add(2);
+numeros.add(8);
+System.out.println(numeros);  // [8, 5, 2]
+```
+
+Para una clase propia sin `Comparable`, pasas un comparator:
+
+```java
+// Ordenar productos por nombre
+Comparator<Producto> porNombre = (p1, p2) -> p1.getNombre().compareTo(p2.getNombre());
+Set<Producto> productos = new TreeSet<>(porNombre);
+```
+
+**Resumen:**
+
+| Situación | Qué hacer |
+|-----------|-----------|
+| Elementos/claves son `String`, `Integer`, etc. | Ya son `Comparable` → `new TreeSet<>()` o `new TreeMap<>()` funciona. |
+| Tu clase debe tener “orden natural” | Implementar `Comparable<T>` en la clase y definir `compareTo`. |
+| Quieres otro orden (inverso, por otro campo) | Pasar un `Comparator<T>` en el constructor: `new TreeSet<>(comparador)`. |
+| No implementas nada y no pasas comparator | Al añadir el primer elemento, **ClassCastException**: TreeSet/TreeMap no saben cómo ordenar. |
+
+**TreeMap:** lo mismo aplica para las **claves**. Las claves deben ser comparables (o pasas un `Comparator` que compare claves). Los valores no se comparan para el orden.
 
 ### 3.3 Map
 
@@ -336,6 +397,23 @@ La IA te ayuda a bajar la idea al código; tú debes entender por qué se elige 
 | Buscar/guardar por clave (diccionario) | `Map` → `HashMap` |
 | Diccionario con claves ordenadas | `Map` → `TreeMap` |
 
-- Siempre usar **Tipos** (`List<String>`, no `List`).
+- Siempre usar **genéricos** (`List<String>`, no `List`).
 - Declarar con **interfaz** y crear con **implementación**.
 - Tener claro si necesitas **orden**, **duplicados** y **acceso por índice o por clave** para elegir bien entre List, Set y Map.
+
+---
+
+## 10. Proyecto de demo: CRUD con las seis implementaciones
+
+En la misma carpeta **CH5-M1-U4-C1** está el proyecto **colecciones-demo**, que muestra en código las diferencias entre cada implementación:
+
+| Colección    | Qué demuestra |
+|-------------|----------------|
+| **ArrayList**  | Create (add), Read (get por índice), Update (set), Delete (remove). Duplicados permitidos. |
+| **LinkedList** | Misma interfaz `List`; inserción al inicio con `add(0, e)`. |
+| **HashSet**    | add, contains, remove; sin duplicados; orden no garantizado. “Update” = remove + add. |
+| **TreeSet**    | Orden automático (String implementa Comparable). Ejemplo con `Comparator.reverseOrder()`. |
+| **HashMap**    | put, get(clave), remove(clave); keySet(), values(), entrySet(). |
+| **TreeMap**    | Mismo CRUD que Map; claves ordenadas (p. ej. alfabético). |
+
+Ejecutar el proyecto: `mvn compile exec:java` desde la carpeta `colecciones-demo`, o ejecutar la clase `com.colecciones.Main` desde el IDE. Toda la salida es por consola para comparar el comportamiento de cada colección.
